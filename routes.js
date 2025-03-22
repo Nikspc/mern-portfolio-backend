@@ -46,7 +46,7 @@ router.get("/projects", async (req, res) => {
 module.exports = router;
 
 // API to update a project by ID
-app.put("/api/projects/:id", async (req, res) => {
+router.put("/api/projects/:id", async (req, res) => {
     try {
         const { title, description, technologies, github, liveDemo } = req.body;
         const updatedProject = await Project.findByIdAndUpdate(
@@ -66,7 +66,7 @@ app.put("/api/projects/:id", async (req, res) => {
 });
 
 // API to delete a project by ID
-app.delete("/api/projects/:id", async (req, res) => {
+router.delete("/api/projects/:id", async (req, res) => {
     try {
         const deletedProject = await Project.findByIdAndDelete(req.params.id);
 
@@ -79,3 +79,5 @@ app.delete("/api/projects/:id", async (req, res) => {
         res.status(500).json({ message: "Error deleting project" });
     }
 });
+
+module.exports = router;
